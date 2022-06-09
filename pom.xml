@@ -4,6 +4,9 @@
     <artifactId>narayana-helper</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>quoss :: narayana :: narayana-helper</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>jakarta.jms</groupId>
