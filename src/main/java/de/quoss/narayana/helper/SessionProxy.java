@@ -121,7 +121,13 @@ public class SessionProxy implements XAQueueSession, XATopicSession {
     @Override
     public void close() throws JMSException {
         final String methodName = "close()";
-        LOGGER.trace("{} start", methodName);
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("{} start", methodName);
+            // let's see who closes the session
+            Exception e = new Exception("trace");
+            LOGGER.trace("Trace exception:", e);
+        }
+        LOGGER.debug("{} [session.class.name={}]", methodName, session.getClass().getName());
         if (transactionHelper.isTransactionAvailable()) {
             transactionHelper.deregisterXAResource(((XASession) session).getXAResource());
             transactionHelper.registerSynchronization(new SessionClosingSynchronization(session));
